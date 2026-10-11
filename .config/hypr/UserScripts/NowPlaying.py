@@ -22,6 +22,15 @@ def pc(*a):
     try: return subprocess.run(P + list(a), capture_output=True, text=True, timeout=1).stdout.strip()
     except Exception: return ''
 def run(*a): subprocess.Popen(P + list(a), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+CAVA_CONF = HOME + '/.config/cava/config'
+def cava_rgb():
+    import re
+    try: txt = open(CAVA_CONF).read()
+    except Exception: return (0.91, 0.91, 0.91)
+    for key in ('foreground', 'gradient_color_1'):
+        m = re.search(r"^\s*%s\s*=\s*['\"]?#([0-9a-fA-F]{6})" % key, txt, re.M)
+        if m: h = m.group(1); return tuple(int(h[i:i+2], 16) / 255 for i in (0, 2, 4))
+    return (0.91, 0.91, 0.91)
 def fmt(s): s = int(s); return '%d:%02d' % (s // 60, s % 60)
 CSS = b"""
 window { background-color: transparent; }
@@ -103,6 +112,15 @@ class NP(Gtk.Window):
             self.cava = subprocess.Popen(['cava', '-p', conf], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
             GLib.io_add_watch(self.cava.stdout.fileno(), GLib.PRIORITY_DEFAULT, GLib.IO_IN | GLib.IO_HUP, self.on_cava)
         except Exception: self.cava = None
+        self.cprov = Gtk.CssProvider(); Gtk.StyleContext.add_provider_for_screen(self.get_screen(), self.cprov, 801)
+        self.cm = None; self.rgb = (0.91, 0.91, 0.91); self.recolor()
+    def recolor(self):
+        try: m = os.path.getmtime(CAVA_CONF)
+        except OSError: m = 0
+        if m == self.cm: return
+        self.cm = m; self.rgb = cava_rgb(); h = '#%02x%02x%02x' % tuple(round(c * 255) for c in self.rgb)
+        self.cprov.load_from_data(('scale highlight { background-color: %s; } scale slider { background-color: %s; } .on { color: %s; } #play { border-color: %s; }' % (h, h, h, h)).encode())
+        self.viz.queue_draw()
     def btn(self, label, cb, name=None):
         b = Gtk.Button(label=label); b.set_relief(Gtk.ReliefStyle.NONE)
         if name: b.set_name(name)
@@ -127,7 +145,7 @@ class NP(Gtk.Window):
         return True
     def draw_viz(self, w, cr):
         W, H = w.get_allocated_width(), w.get_allocated_height(); n = len(self.bars) or 1; gap = 3
-        bw = (W - gap * (n - 1)) / n; cr.set_source_rgba(0.91, 0.91, 0.91, 0.85)
+        bw = (W - gap * (n - 1)) / n; cr.set_source_rgba(*self.rgb, 0.85)
         for i, v in enumerate(self.bars):
             h = max(2, v / 100 * H); rrect(cr, i * (bw + gap), H - h, bw, h, 2); cr.fill()
     def draw_cover(self, w, cr):
@@ -147,6 +165,7 @@ class NP(Gtk.Window):
         self.cover.queue_draw()
     def update(self):
         if self.done: return False
+        self.recolor()
         o = pc('metadata', '--format', '{{status}}\t{{title}}\t{{artist}}\t{{album}}\t{{mpris:artUrl}}\t{{position}}\t{{mpris:length}}\t{{xesam:url}}\t{{volume}}')
         if not o:
             self.title.set_text('Rien en lecture'); self.sub.set_text('Choisis un album'); self.state.set_text('')
