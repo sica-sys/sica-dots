@@ -1,4 +1,12 @@
 vim.g.mapleader = " "
+-- Fichiers recents masques sur les dashboards si dashboard-recent = off (menu Super+Alt+N)
+do
+  local f = io.open(vim.fn.stdpath("config") .. "/dashboard-recent", "r")
+  local v = f and f:read("*l"); if f then f:close() end
+  if v == "off" then
+    vim.api.nvim_create_autocmd("VimEnter", { once = true, callback = function() vim.v.oldfiles = {} end })
+  end
+end
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({ { import = "plugins" } }, {

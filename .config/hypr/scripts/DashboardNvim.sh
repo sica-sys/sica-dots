@@ -10,12 +10,18 @@ splash_list() {
 }
 milli=$(cat "$cfg/dashboard-milli" 2>/dev/null || echo off)
 splash=$(cat "$cfg/dashboard-splash" 2>/dev/null || echo random)
+recent=$(cat "$cfg/dashboard-recent" 2>/dev/null || echo on)
 n=$(splash_list | wc -l)
 choice=$(printf '%s\n' snacks-default snacks-compact dashnvim-hyper dashnvim-doom \
   alpha-dashboard alpha-startify alpha-theta mini-starter \
-  "milli (logo anime) : $milli -> basculer" "milli splash : $splash -> choisir ($n splashes + random)" | menu "Choose Neovim dashboard")
+  "fichiers recents : $recent -> basculer" "milli (logo anime) : $milli -> basculer" "milli splash : $splash -> choisir ($n splashes + random)" | menu "Choose Neovim dashboard")
 [ -z "$choice" ] && exit 0
 case "$choice" in
+  "fichiers recents"*)
+    [ "$recent" = on ] && new=off || new=on
+    echo "$new" > "$cfg/dashboard-recent"
+    notify-send "Neovim" "Fichiers recents : $new"
+    ( cd "$HOME" && kitty --class dash-preview -e nvim >/dev/null 2>&1 & ) ;;
   "milli splash"*)
     pick=$( { echo random; splash_list; } | menu "Choose milli splash (random ou 1 des $n)")
     [ -z "$pick" ] && exit 0
@@ -28,5 +34,6 @@ case "$choice" in
     notify-send "Neovim" "milli : $new (au prochain lancement)" ;;
   *)
     echo "$choice" > "$cfg/dashboard-choice"
-    notify-send "Neovim" "Dashboard : $choice (au prochain lancement)" ;;
+    notify-send "Neovim" "Dashboard : $choice"
+    ( cd "$HOME" && kitty --class dash-preview -e nvim >/dev/null 2>&1 & ) ;;
 esac

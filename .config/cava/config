@@ -216,14 +216,14 @@
 # >>> Couleur Cava (menu Bureau)
 gradient = 1
 gradient_count = 8
-gradient_color_1 = '#541e0c'
-gradient_color_2 = '#802f13'
-gradient_color_3 = '#ad3f1a'
-gradient_color_4 = '#d94f21'
-gradient_color_5 = '#f16637'
-gradient_color_6 = '#f3825d'
-gradient_color_7 = '#f69f82'
-gradient_color_8 = '#f9bca7'
+gradient_color_1 = '#582f00'
+gradient_color_2 = '#884800'
+gradient_color_3 = '#b76100'
+gradient_color_4 = '#e67a00'
+gradient_color_5 = '#fe9115'
+gradient_color_6 = '#fea541'
+gradient_color_7 = '#feba6d'
+gradient_color_8 = '#fecf99'
 # <<< Couleur Cava
 
 # Colors can be one of seven predefined: black, blue, cyan, green, magenta, red, white, yellow.

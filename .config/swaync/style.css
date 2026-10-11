@@ -330,13 +330,13 @@
 
 /* ===== Verre (ajout) — notifications, contour à la couleur de la Cava (réécrit par ChorusTheme.py) ===== */
 .notification-row .notification-background .notification, .notification {
-  background: rgba(21, 18, 31, 0.84); border: 2px solid #f05825;
+  background: rgba(21, 18, 31, 0.84); border: 2px solid #fe8700;
   border-radius: 14px; color: #f4f1ff; box-shadow: none; }
 .notification .summary { color: #f4f1ff; font-weight: bold; }
 .notification .body, .notification .time { color: #b9b2d6; }
-.notification-default-action:hover, .notification-action:hover { background: alpha(#f05825, 0.18); }
-.close-button { background: #f05825; color: #1b1029; border-radius: 50%; }
-.control-center { background: rgba(21, 18, 31, 0.86); border: 2px solid #f05825; border-radius: 16px; color: #f4f1ff; }
+.notification-default-action:hover, .notification-action:hover { background: alpha(#fe8700, 0.18); }
+.close-button { background: #fe8700; color: #1b1029; border-radius: 50%; }
+.control-center { background: rgba(21, 18, 31, 0.86); border: 2px solid #fe8700; border-radius: 16px; color: #f4f1ff; }
 .control-center .notification-row .notification-background { background: transparent; }
-.widget-title > button, .widget-dnd > switch:checked { background: #f05825; background-image: none; color: #1b1029; }
-progressbar progress { background: #f05825; background-image: none; }
+.widget-title > button, .widget-dnd > switch:checked { background: #fe8700; background-image: none; color: #1b1029; }
+progressbar progress { background: #fe8700; background-image: none; }
