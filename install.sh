@@ -8,6 +8,7 @@ cd "$D"
 find .config FichePerso -type f 2>/dev/null | while read -r f; do
   if [ -e "$HOME/$f" ]; then mkdir -p "$B/$(dirname "$f")"; cp -a "$HOME/$f" "$B/$f"; fi
   mkdir -p "$HOME/$(dirname "$f")"; cp -a "$f" "$HOME/$f"
+  grep -qI '/home/hote' "$HOME/$f" 2>/dev/null && sed -i "s#/home/hote#$HOME#g" "$HOME/$f"
 done
 find "$HOME/.config/hypr/UserScripts" "$HOME/.config/hypr/scripts" "$HOME/FichePerso" -type f \( -name '*.sh' -o -name '*.py' \) -exec chmod +x {} + 2>/dev/null
 [ -f "$HOME/FichePerso/textes.conf" ] || cp "$HOME/FichePerso/textes.exemple.conf" "$HOME/FichePerso/textes.conf" 2>/dev/null || true
