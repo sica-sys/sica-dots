@@ -1,0 +1,49 @@
+/* ---- 💫 https://github.com/LinuxBeginnings 💫 ---- */
+/* Main config Rofi Beats Config menu */
+
+@import "~/.config/hypr/rofi/config.rasi"  
+
+/* ---- Mainbox ---- */
+mainbox {
+  children:
+    [ "inputbar", "listview"];
+}
+
+/* ---- Entry ---- */ 
+entry {
+  expand: false;
+  width: 25%;
+  width: 25%;
+  placeholder: " 📻 Choose Music Source";
+  horizontal-align: 0.5;
+  horizontal-align: 0.5;
+}
+
+/* ---- Window ---- */
+window {
+  width: 28%;
+  height: inherit;
+}
+
+/* ---- Listview ---- */
+listview {
+  fixed-columns: false;
+  scrollbar: false;
+  colums: 1;
+  lines: 4;
+  spacing: 6px;
+  cycle: true;
+}
+
+/* ---- Element ---- */
+element-icon {
+  	size: 0%;
+}
+element-text {
+    horizontal-align: 0.5;
+    
+}
+/* ===== Sélection violette (ajout) ===== */
+element { border: 2px; border-color: transparent; border-radius: 12px; }
+element selected.normal, element selected.active { background-color: rgba(198, 120, 221, 0.24); border-color: #c678dd; text-color: #ffffff; }
+element-text, element-icon { background-color: transparent; text-color: inherit; }

@@ -1,0 +1,52 @@
+/* ---- 💫 https://github.com/LinuxBeginnings 💫 ---- */
+/* Main Config - For Keybinds generation */
+
+@import "~/.config/hypr/rofi/config.rasi"  
+
+
+/* ---- Mainbox ---- */
+mainbox {
+  children:
+    [ "inputbar", "message", "listview"];
+}
+
+/* ---- Entry ---- */
+entry {
+  expand: true;
+  placeholder: " 🧮 Rechercher un raccourci";
+}
+
+/* ---- Listview ---- */
+listview {
+  columns: 2;
+  lines: 8;
+  fixed-height: false;
+  scrollbar: true;
+  spacing: 6px;
+  cycle: true;
+}
+
+window {
+  width: 90%;
+  height: inherit;
+}
+
+/* ---- Elements ---- */
+element {
+  orientation: horizontal;
+}
+
+element-icon {
+  	size: 0%;
+}
+
+element-text {
+    horizontal-align: 0.0;
+    vertical-align: 0.5;
+    margin: 0px;
+    padding: 0px;
+}
+/* ===== Sélection violette (ajout) ===== */
+element { border: 2px; border-color: transparent; border-radius: 12px; }
+element selected.normal, element selected.active { background-color: rgba(198, 120, 221, 0.24); border-color: #c678dd; text-color: #ffffff; }
+element-text, element-icon { background-color: transparent; text-color: inherit; }

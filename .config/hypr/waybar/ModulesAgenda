@@ -1,0 +1,37 @@
+{
+  "clock#heure": {
+    "interval": 1,
+    "format": " {:%H:%M:%S}",
+    "tooltip": false,
+    "on-click": "$HOME/.config/hypr/UserScripts/AgendaMeteo.sh mini",
+    "on-click-right": "$HOME/.config/hypr/UserScripts/AgendaMeteo.sh semaine"
+  },
+  "clock#date": {
+    "interval": 60,
+    "format": " {:L%a %d %b}",
+    "tooltip": false,
+    "on-click": "$HOME/.config/hypr/UserScripts/AgendaMeteo.sh agenda",
+    "on-click-right": "$HOME/.config/hypr/UserScripts/AgendaMeteo.sh nouveau"
+  },
+  "custom/superprod": {
+    "exec": "$HOME/.config/hypr/UserScripts/superprod/sp-waybar.py status",
+    "return-type": "json",
+    "interval": 2,
+    "signal": 9,
+    "max-length": 45,
+    "on-click": "$HOME/.config/hypr/UserScripts/superprod/sp-waybar.py toggle",
+    "on-click-right": "$HOME/.config/hypr/UserScripts/superprod/sp-waybar.py menu",
+    "on-click-middle": "flatpak run com.super_productivity.SuperProductivity"
+  },
+  "group/heure": {
+    "orientation": "inherit",
+    "modules": [
+      "clock#heure",
+      "custom/superprod"
+    ],
+    "drawer": {
+      "transition-duration": 400,
+      "transition-left-to-right": false
+    }
+  }
+}

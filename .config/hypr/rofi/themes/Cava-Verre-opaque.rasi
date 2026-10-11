@@ -1,0 +1,13 @@
+configuration { show-icons: true; }
+* { font: "JetBrainsMono Nerd Font 12"; text-color: #ece6ff; background-color: transparent; }
+window { width: 560px; border-radius: 16px; padding: 14px; background-color: rgba(14, 12, 24, 0.88); border: 2px solid; border-color: #f05825; }
+mainbox { spacing: 10px; children: [ inputbar, listview ]; }
+inputbar { padding: 9px 12px; border-radius: 10px; spacing: 8px; children: [ prompt, entry ]; background-color: rgba(240, 88, 37, 0.10); border: 1px solid; border-color: rgba(240, 88, 37, 0.40); }
+prompt { text-color: #f05825; }
+entry { placeholder: "Rechercher…"; placeholder-color: #8a85a8; }
+listview { lines: 8; columns: 1; spacing: 4px; scrollbar: false; fixed-height: false; }
+element { padding: 8px 10px; border-radius: 9px; spacing: 10px; }
+element-icon { size: 22px; }
+element-text { vertical-align: 0.5; }
+element selected.normal, element selected.active { background-color: #f05825; background-image: linear-gradient(to right, #f05825, #f05825); }
+element-text selected { text-color: #0b0f18; }
