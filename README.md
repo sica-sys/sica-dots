@@ -7,9 +7,8 @@ L'idée : **une seule couleur, la « couleur Cava »**. Tout le bureau la suit :
 
 ![Aperçu](screenshots/apercu.png)
 
-▶ [Vidéo de présentation / Showcase video (r/LinuxPorn)](https://www.reddit.com/r/LinuxPorn/comments/1x39gya/hyprland_my_first_rice_everything_follows_one/)
 
-🎬 **Vidéo de présentation** : *(lien Reddit)*
+🎬 **Vidéo de présentation** : *[r/LinuxPorn](https://www.reddit.com/r/LinuxPorn/comments/1x39gya/hyprland_my_first_rice_everything_follows_one/)*
 
 ## Ce qu'il y a dedans
 
