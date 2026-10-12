@@ -1,7 +1,14 @@
+-- Traduction française de which-key (chargée par lua/plugins/modules.lua : opts = { spec = require("mydash.wkfr") }).
+-- which-key charge ses textes anglais (presets) AVANT ce fichier, donc ce fichier gagne toujours, même après une mise à jour.
 local spec = {
   { "<leader>w", group = "fenêtres" }, { "<leader>b", group = "pages ouvertes" },
   { "<leader>c", group = "amusement" }, { "<leader>d", group = "canards" }, { "<leader>u", group = "interface" },
   { "<c-w>", group = "fenêtres" },
+  { "<leader>v", group = "jeux" }, { "<leader>T", group = "tableaux" },
+  { "<leader>Tm", desc = "Activer/désactiver le mode tableau" }, { "<leader>Tr", desc = "Réaligner le tableau" },
+  { "<leader>Tt", desc = "Transformer le texte en tableau" }, { "<leader>Ts", desc = "Trier le tableau" },
+  { "<leader>Tic", desc = "Insérer une colonne" }, { "<leader>Tdc", desc = "Supprimer la colonne" },
+  { "<leader>Tdd", desc = "Supprimer la ligne" },
   { "a", group = "autour (avec les délimiteurs)", mode = { "o", "x" } },
   { "i", group = "intérieur", mode = { "o", "x" } },
 }
