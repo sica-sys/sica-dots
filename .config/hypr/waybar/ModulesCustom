@@ -323,5 +323,11 @@
 "custom/arrow10": {
 	"format": "",
 	"tooltip": false
-}
+},
+
+"custom/cyber_menu": { "exec":"echo 🛡️", "interval":99999, "on-click":"/home/hote/.config/hypr/UserScripts/CyberMenu.sh", "tooltip-format":"Boîte à outils cyber" },
+"custom/cyber_net": { "exec":"echo 📡", "interval":9999, "on-click":"kitty -e mtr 1.1.1.1", "on-click-right":"wireshark", "tooltip-format":"Réseau : clic=mtr, droit=Wireshark" },
+"custom/cyber_nord": { "exec":"echo '🟦 Nord'", "interval":99999, "on-click":"/home/hote/.config/hypr/UserScripts/CyberNord.sh", "tooltip-format":"NordVPN on/off" },
+"custom/cyber_thm": { "exec":"/home/hote/.config/hypr/UserScripts/CyberTHMStatus.sh", "return-type":"json", "interval":5, "signal":9, "on-click":"/home/hote/.config/hypr/UserScripts/CyberTHM.sh", "tooltip":true },
+"custom/cyber_ip": { "exec":"/home/hote/.config/hypr/UserScripts/CyberStatus.sh", "return-type":"json", "interval":5, "on-click":"/home/hote/.config/hypr/UserScripts/CyberCopyIP.sh", "tooltip-format":"IP / VPN - clic = copier" }
 }

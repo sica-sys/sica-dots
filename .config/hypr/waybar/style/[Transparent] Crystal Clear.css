@@ -202,3 +202,12 @@ window#waybar.empty #window {
 #custom-superprod { padding: 0 10px; margin: 0 4px; border-radius: 8px; }
 #custom-superprod.running { color: #56d6c0; }
 #custom-superprod.paused, #custom-superprod.idle, #custom-superprod.off { color: #b9b2d6; }
+
+/* === Barre Cyber === */
+#custom-cyber_menu { color:#8be9fd; padding:0 8px; font-size:15px; }
+#custom-cyber_ip.off { color:#ff5555; }
+#custom-cyber_ip.on  { color:#50fa7b; }
+#custom-cyber_ip.thm { color:#f1fa8c; }
+#custom-cyber_nord, #custom-cyber_thm, #custom-cyber_net { padding:0 6px; }
+#custom-cyber_thm.on  { color:#50fa7b; }
+#custom-cyber_thm.off { color:#888888; }

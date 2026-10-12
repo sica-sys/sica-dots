@@ -264,3 +264,11 @@ bind("SUPER CTRL", "O", exec_cmd("$HOME/.config/hypr/UserScripts/DecoNiveau.sh o
 -- Aide-mémoire en français (remplace KeyHints.sh de KooL)
 unbind("SUPER", "H")
 bind("SUPER", "H", exec_cmd("$HOME/.config/hypr/UserScripts/AideMemoire.sh"), { description = "aide-mémoire (français)" })
+
+-- Super+Alt+Y : bascule barre Cyber
+bind(
+    "SUPER ALT",
+    "Y",
+    exec_cmd("/home/hote/.config/hypr/UserScripts/CyberBar.sh"),
+    { description = "Bascule Waybar Cyber" }
+)

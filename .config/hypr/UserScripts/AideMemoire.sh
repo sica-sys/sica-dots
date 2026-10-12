@@ -29,6 +29,7 @@ L=( \
   "$S Alt B" "Disposition de la Waybar" "" \
   "Ctrl Alt B" "Cacher / montrer la Waybar" "" \
   "$S Alt R" "Recharger Waybar, notifications, Rofi" "" \
+  "$S Alt Y" "Bascule barre Cyber (boite a outils cybersecurite)" "" \
   "Clic gauche / droit sur la Cava" "Lecteur / pause" "" \
   "Clic gauche / droit sur le profil" "Fiche perso / fiche pro" "fiche perso : touches A à G pour le style" \
   "Clic sur la date, l'heure, la météo" "Calendrier, agenda, météo" "" \
