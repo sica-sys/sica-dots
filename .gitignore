@@ -1,4 +1,5 @@
 *.bak*
+!*[Gg]lass*.bak
 *.new*
 __pycache__/
 *.pyc
