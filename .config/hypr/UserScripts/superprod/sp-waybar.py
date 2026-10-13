@@ -105,7 +105,14 @@ def toggle():
     if cur:
         open(LAST, "w").write(cur["id"]); api("POST", "/task-control/stop", {})
     elif derniere():
-        api("POST", f"/tasks/{derniere()}/start", {})
+        import urllib.error
+        try: api("POST", f"/tasks/{derniere()}/start", {})
+        except urllib.error.HTTPError as e:
+            if e.code != 404: raise
+            # la dernière tâche n'existe plus (supprimée/archivée) : on l'oublie et on propose la liste
+            try: os.remove(LAST)
+            except OSError: pass
+            return menu()
     else:
         return menu()
     rafraichir()

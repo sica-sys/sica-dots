@@ -7,6 +7,7 @@
   "$HOME/.config/hypr/waybar/Modules",
   "$HOME/.config/hypr/waybar/ModulesWorkspaces",
   "$HOME/.config/hypr/waybar/ModulesCustom",
+  "$HOME/.config/hypr/waybar/ModulesAgenda",
   "$HOME/.config/hypr/waybar/ModulesGroups",
   "$HOME/.config/hypr/waybar/UserModules",
   ],
@@ -23,7 +24,7 @@
 "margin-right": 8,
 
 "modules-left": ["custom/menu", "custom/separator#blank_2", "custom/cyber_menu", "custom/cyber_net", "custom/cyber_thm", "custom/cyber_ip"],
-"modules-center": ["clock"],
+"modules-center": ["group/heure", "clock#date"],
 "modules-right": ["custom/cava_mviz", "custom/separator#blank_2", "pulseaudio", "cpu", "temperature", "battery", "custom/separator#blank_2", "custom/nightlight", "custom/power"],
 
 }
