@@ -12,9 +12,14 @@ fi
 m=$(find "$record_dir" -name 'video-*.mp4' -printf '%f\n' 2>/dev/null | grep -oE '^video-[0-9]+' | grep -oE '[0-9]+' | sort -n | tail -1); n=$(( 10#${m:-0} + 1 ))
 file="$record_dir/video-$(printf '%02d' "$n")_$(date '+%d-%m_%Hh%M').mp4"     # ex. video-12_11-10_01h48.mp4
 
-notify-send "🎥 Enregistrement" "▶️ Enregistrement démarré" -t 2500
+# Son du PC : le "monitor" de la sortie audio actuelle (enceintes, casque, AirPods...)
+audio=()
+sink=$(pactl get-default-sink 2>/dev/null)
+[ -n "$sink" ] && audio=(--audio="${sink}.monitor")
 
-wf-recorder -f "$file"
+notify-send "🎥 Enregistrement" "▶️ Enregistrement démarré${audio:+ (avec le son)}" -t 2500
+
+wf-recorder "${audio[@]}" -f "$file"
 
 if [ -f "$file" ]; then
     notify-send "🎥 Enregistrement" "💾 Sauvegardé : $(basename "$file")" -t 3000

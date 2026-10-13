@@ -1,13 +1,13 @@
 configuration { show-icons: true; }
 * { font: "JetBrainsMono Nerd Font 12"; text-color: #ece6ff; background-color: transparent; }
-window { width: 560px; border-radius: 16px; padding: 14px; background-color: rgba(70, 40, 110, 0.42); border: 2px solid; border-color: rgba(0, 157, 198, 0.85); }
+window { width: 560px; border-radius: 16px; padding: 14px; background-color: rgba(70, 40, 110, 0.42); border: 2px solid; border-color: rgba(149, 53, 198, 0.85); }
 mainbox { spacing: 10px; children: [ inputbar, listview ]; }
 inputbar { padding: 9px 12px; border-radius: 10px; spacing: 8px; children: [ prompt, entry ]; background-color: rgba(255, 255, 255, 0.07); }
-prompt { text-color: #009dc6; }
+prompt { text-color: #9535c6; }
 entry { placeholder: "Rechercher…"; placeholder-color: #8a85a8; }
 listview { lines: 8; columns: 1; spacing: 4px; scrollbar: false; fixed-height: false; }
 element { padding: 8px 10px; border-radius: 9px; spacing: 10px; }
 element-icon { size: 22px; }
 element-text { vertical-align: 0.5; }
-element selected.normal, element selected.active { background-color: rgba(0, 157, 198, 0.35); border: 1px solid; border-color: #009dc6; }
+element selected.normal, element selected.active { background-color: rgba(149, 53, 198, 0.35); border: 1px solid; border-color: #9535c6; }
 element-text selected { text-color: #ffffff; }
