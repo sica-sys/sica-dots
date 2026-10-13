@@ -17,6 +17,14 @@ def api(method, path, body=None):
     with opener.open(req, timeout=3) as r: j = json.load(r)
     return j.get("data") if j.get("ok") else None
 
+def courant():
+    """Tâche en cours. Depuis la mise à jour, l'API répond 404 quand aucune tâche ne tourne."""
+    import urllib.error
+    try: return tache(api("GET", "/task-control/current"))
+    except urllib.error.HTTPError as e:
+        if e.code == 404: return None
+        raise
+
 def tache(d):
     if isinstance(d, dict) and not d.get("title") and isinstance(d.get("task"), dict): d = d["task"]
     return d if isinstance(d, dict) and d.get("title") else None
@@ -33,11 +41,24 @@ def derniere():
     try: return open(LAST).read().strip()
     except Exception: return ""
 
+def cause(e):
+    """Message clair selon la vraie erreur (au lieu d'un message unique)."""
+    import urllib.error
+    if isinstance(e, urllib.error.HTTPError) and e.code in (401, 403):
+        return "Jeton refusé (erreur %d) : recopie le jeton de l'API locale dans ~/.config/superprod/api-header" % e.code
+    if isinstance(e, urllib.error.HTTPError):
+        return "L'API locale répond mais refuse la demande (erreur %d)" % e.code
+    if isinstance(e, urllib.error.URLError) and "refused" in str(e.reason).lower():
+        return "Super Productivity est fermé, ou son API locale est désactivée (rien n'écoute sur le port 3876)"
+    if not token():
+        return "Jeton introuvable dans ~/.config/superprod/api-header"
+    return "Erreur : %s" % e
+
 def rafraichir(): subprocess.run(["pkill", "-RTMIN+9", "waybar"])
 def notif(msg): subprocess.run(["notify-send", "Super Productivity", msg])
 
 def status():
-    try: cur = tache(api("GET", "/task-control/current"))
+    try: cur = courant()
     except Exception:
         print(json.dumps({"text": "SP fermé", "class": "off", "tooltip": "Clic du milieu : ouvrir Super Productivity"})); return
     if cur:
@@ -62,7 +83,7 @@ def status():
 
 def menu():
     taches = [t for t in (api("GET", "/tasks?tagId=TODAY") or []) if not t.get("parentId")]
-    cur = tache(api("GET", "/task-control/current")); cid = cur["id"] if cur else None
+    cur = courant(); cid = cur["id"] if cur else None
     lignes = []
     for t in taches:
         est = f" / {court(t.get('timeEstimate'))}" if t.get("timeEstimate") else ""
@@ -80,7 +101,7 @@ def menu():
     rafraichir()
 
 def toggle():
-    cur = tache(api("GET", "/task-control/current"))
+    cur = courant()
     if cur:
         open(LAST, "w").write(cur["id"]); api("POST", "/task-control/stop", {})
     elif derniere():
@@ -94,4 +115,4 @@ if __name__ == "__main__":
     if mode == "status": status()
     else:
         try: {"toggle": toggle, "menu": menu}[mode]()
-        except Exception: notif("Super Productivity n'est pas ouvert, ou l'API locale est désactivée")
+        except Exception as e: notif(cause(e))
