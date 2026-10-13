@@ -203,3 +203,5 @@ element-text, element-icon { background-color: transparent; text-color: inherit;
 @theme "~/.config/hypr/rofi/themes/Cava-Verre-violet.rasi"
 @theme "~/.config/hypr/rofi/themes/Cava-Verre-opaque.rasi"
 @theme "~/.config/hypr/rofi/themes/Cava-Verre-violet.rasi"
+@theme "~/.config/hypr/rofi/themes/Cava-Verre-violet.rasi"
+@theme "~/.config/hypr/rofi/themes/Cava-Verre-opaque.rasi"
